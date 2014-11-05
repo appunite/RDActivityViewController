@@ -51,6 +51,10 @@
     return self;
 }
 
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController {
+    return [UIImage new];
+}
+
 - (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType {
     // Get the items if not already received
     NSMutableDictionary *activity = [_itemsMapping objectForKey:activityType];
@@ -80,9 +84,22 @@
     return item;
 }
 
-- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController {
-    if(_placeholderItem == nil) { return @""; }
-    return _placeholderItem;
+- (NSString *)activityViewController:(UIActivityViewController *)activityViewController
+              subjectForActivityType:(NSString *)activityType
+{
+   
+    NSString *subject;
+    
+    if ([_delegate respondsToSelector:@selector(activityViewController:subjectForActivityType:)]) {
+        subject = [_delegate
+                   performSelector:@selector(activityViewController:subjectForActivityType:)
+                        withObject:self
+                        withObject:activityType];
+    } else {
+        subject = nil;
+    }
+    
+    return subject;
 }
 
 @end
