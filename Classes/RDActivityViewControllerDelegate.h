@@ -16,7 +16,6 @@
 - (NSArray *)activityViewController:(NSArray *)activityViewController itemsForActivityType:(NSString *)activityType;
 
 @optional
-
 - (NSString *)activityViewController:(RDActivityViewController *)activityViewController
               subjectForActivityType:(NSString *)activityType;
 @end

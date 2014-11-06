@@ -43,7 +43,7 @@
         [items addObject:self];
     }
     
-    self = [self initWithActivityItems:items applicationActivities:applicationActivities];
+    self = [super initWithActivityItems:items applicationActivities:applicationActivities];
     if (self) {
         _itemsMapping = [[NSMutableDictionary alloc] init];
     }
